@@ -1,9 +1,9 @@
+//set the canvas "resolution" to match the screen
 let canvas = document.getElementById("display")
-
-console.log(canvas)
-
 canvas.width = document.body.clientWidth
 canvas.height = document.body.clientHeight
+
+//create 2D
 let ctx = canvas.getContext("2d")
 
 console.log(ctx)
