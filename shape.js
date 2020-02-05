@@ -7,7 +7,9 @@ class Shape {
 		this.height = height
 	}
 	draw() {
-		ctx.fillRect(
+		let colorindex = '#'+Math.floor(Math.random()*16777215).toString(16)
+		CTX.fillStyle = colorindex
+		CTX.fillRect(
 			this.x,
 			this.y,
 			this.width,
@@ -16,7 +18,7 @@ class Shape {
 	}
 }
 
-ctx.fillStyle = "lightpurple"
+CTX.fillStyle = "lightpurple"
 new Shape(100, 100, 200, 200) .draw()
 new Shape(200, 200, 200, 200) .draw()
 new Shape(300, 300, 200, 200) .draw()

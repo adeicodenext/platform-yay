@@ -1,15 +1,19 @@
-//set the canvas "resolution" to match the screen
-let canvas = document.getElementById("display")
-canvas.width = document.body.clientWidth
-canvas.height = document.body.clientHeight
+//set the CANVAS "resolution" to match the screen
+let CANVAS= document.getElementById("display")
+CANVAS.width = document.body.clientWidth
+CANVAS.height = document.body.clientHeight
 
-//create 2D
-let ctx = canvas.getContext("2d")
+//create 2D context object for drawing on the CANVAS
+let CTX = CANVAS.getContext("2d")
 
-console.log(ctx)
+// draw 
+console.log(CTX)
 
-ctx.fillStyle = "hotpink"
-ctx.fillRect(0, 0, canvas.width, canvas.height)
+function ERASE () {
+	CTX.fillStyle = "hotpink"
+	CTX.fillRect(0, 0, CANVAS.width, CANVAS.height)
 
-ctx.fillStyle = "violet"
-ctx.fillRect(0, 0, 400, 100)
+	CTX.fillStyle = "violet"
+	CTX.fillRect(0, 0, 400, 100)	
+}
+
