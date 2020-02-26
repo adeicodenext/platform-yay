@@ -14,7 +14,7 @@ window.addEventListener("keyup", event => {
 function loop() {
   console.log(keyPressed)
   if (keyPressed["ArrowUp"]) {
-    hero.moveUp()
+    hero.jump()
   }
   if (keyPressed["ArrowDown"]) {
     hero.moveDown()
@@ -25,6 +25,8 @@ function loop() {
   if (keyPressed["ArrowRight"]) {
     hero.moveRight()
   }
+
+  hero.step()
 
   // draw everything
   ERASE()
