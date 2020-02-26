@@ -1,29 +1,38 @@
 
+// state
 let hero = new Hero()
-let shapes = []
+let keyPressed = {}
 
-ERASE()
-hero.draw()
-
-//setup a function to run whenever a key is presssed
+// setup a function to run whenever a key is pressed
 window.addEventListener("keydown", event => {
-	if (event.code === "KeyS") {
-		let colorIndex = Math.random()
-		let color = "lightpink"
-		if (colorIndex < 0.5) {
-			color = "lightblue"
-		}
-		CTX.fillStyle = color
-
-		let x = Math.random() * 1250
-		let y = Math.random() * 700
-		let s = new Shape(x, y, 200, 100)
-		shapes.push(s)
-	}
-	if (event.code === "ArrowRight") {
-		hero.moveRight()
-	}
-	ERASE()
-	shapes.forEach(s => s.draw())
-	hero.draw()
+  keyPressed[event.code] = true
 })
+window.addEventListener("keyup", event => {
+  keyPressed[event.code] = false
+})
+
+function loop() {
+  console.log(keyPressed)
+  if (keyPressed["ArrowUp"]) {
+    hero.moveUp()
+  }
+  if (keyPressed["ArrowDown"]) {
+    hero.moveDown()
+  }
+  if (keyPressed["ArrowLeft"]) {
+    hero.moveLeft()
+  }
+  if (keyPressed["ArrowRight"]) {
+    hero.moveRight()
+  }
+
+  // draw everything
+  ERASE()
+  hero.draw()
+
+  // run loop again!
+  setTimeout(loop, 1000 / 60)
+}
+
+// run loop once on startup to get it started
+loop()
