@@ -1,7 +1,7 @@
 
 let heroSprite = new Sprite("jumpman.png")
-let heroStand = new Sprite ("../images/heros/pink/alienPink_stand.png")
-let heroJump = new Sprite ("../images/heros/pink/alienPink_jump.png")
+let heroStand = new Sprite ("images/alienPink_stand.png")
+let heroJump = new Sprite ("images/alienPink_jump.png")
 
 class Hero {
   constructor() {
@@ -32,7 +32,7 @@ class Hero {
   moveRight() {
     this.x = this.x + GRIDSIZE/10
   }
-  step(){
+  step(platforms){
     //ACCELREATIONS
     this.dy = this.dy + GRIDSIZE/55
      if (this.dy > GRIDSIZE){
@@ -40,23 +40,35 @@ class Hero {
     }
     //velocity
     this.y = this.y + this.dy
+
+    platforms.forEach(p => {
+      let isInsideY = this.y > p.y && this.y < p.y + p.height
+      let isInsideX = this.x > p.x && this.x < p.x + p.width
+      if (isInsideX && isInsideY) {
+        this.y = p.y 
+        this.dy = 0
+        this.airborne = false
+      }    
+    })
+
     if (this.y > CANVAS.height){
       this.y = CANVAS.height
+      this.dy = 0
       this.airborne = false
-        }
-      }
+    }
+  }
 
   draw() {
-    CTX.fillStyle = 'black'
-    CTX.beginPath()
-    CTX.arc(
-      this.x,
-      this.y,
-      this.width,
-      0,
-      2 * Math.PI,
-    )
-    CTX.fill()
+    //CTX.fillStyle = 'black'
+    //CTX.beginPath()
+    //CTX.arc(
+      //this.x,
+      //this.y,
+      //this.width,
+      //0,
+      //2 * Math.PI,
+    //)
+    //CTX.fill()
 
     let imageToDraw = heroStand
     if (this.airborne) {
